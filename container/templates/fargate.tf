@@ -46,7 +46,7 @@ resource "aws_lb_target_group" "api-lb-target-group" {
   vpc_id      = "${aws_vpc.api-vpc.id}"
 }
 
-resource "aws_ecs_service" "api_ecs_cluster" {
+resource "aws_ecs_service" "api_ecs_service" {
   name            = "${var.app}-ECSService"
   cluster         = "${aws_ecs_cluster.api_ecs_cluster.id}"
   task_definition = "${aws_ecs_task_definition.api_ecs_task_definition.arn}"

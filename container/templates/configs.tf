@@ -7,5 +7,5 @@
 
  variable "image" {
   description = "image name to spin up the container"
-  default = "python-flask-api"
+  default = "python-flask-api:latest"
 }
