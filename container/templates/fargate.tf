@@ -40,7 +40,7 @@ resource "aws_vpc" "api-vpc" {
 
 resource "aws_lb_target_group" "api-lb-target-group" {
   name        = "${var.app}-lb-target-group"
-  port        = 80
+  port        = 8080
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = "${aws_vpc.api-vpc.id}"
@@ -49,7 +49,7 @@ resource "aws_lb_target_group" "api-lb-target-group" {
 resource "aws_ecs_service" "api_ecs_cluster" {
   name            = "${var.app}-ECSService"
   cluster         = "${aws_ecs_cluster.api_ecs_cluster.id}"
-  task_definition = "${aws_ecs_task_definition.aws_ecs_task_definition.arn}"
+  task_definition = "${aws_ecs_task_definition.api_ecs_task_definition.arn}"
   desired_count   = 2
 
   load_balancer {

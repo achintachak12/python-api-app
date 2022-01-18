@@ -22,7 +22,7 @@ resource "aws_iam_role" "api_ecs_task_execution_role" {
 EOF
 }
 resource "aws_iam_role" "api_ecs_task_role" {
-  name = "${var}-ECS-Task-Role"
+  name = "${var.app}-ECS-Task-Role"
  
   assume_role_policy = <<EOF
 {
