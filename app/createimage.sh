@@ -6,6 +6,6 @@ docker images
 
 docker login
 
-docker tag python-flask-api apps/python-flask-api
+docker tag python-flask-api achidoc/python-flask-api:latest
 
-docker push apps/python-flask-api
+docker push achidoc/python-flask-api:latest
