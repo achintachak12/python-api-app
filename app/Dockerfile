@@ -6,6 +6,6 @@ COPY ./python ./python
 
 RUN pip install --no-cache-dir -r ./python/requirements.txt
 
-EXPOSE 5000
+EXPOSE 8080
 
 CMD ["python3", "./python/app.py"]
