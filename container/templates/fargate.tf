@@ -64,7 +64,7 @@ resource "aws_ecs_service" "api-ecs-service" {
 }
 
 resource "aws_alb" "api-alb" {
-  name               = "${var.app_name}-alb"
+  name               = "${var.app}-alb"
   internal           = false
   load_balancer_type = "application"
   subnets            = aws_subnet.api_public.*.id
