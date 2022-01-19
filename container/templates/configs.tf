@@ -11,16 +11,16 @@
 }
 
  variable "private_subnets" {
-  description = "Number of private subnets"
-  default = 2
+  description = "Private Subnets"
+  default = ["10.10.0.0/24", "10.10.1.0/24"]
 }
 
  variable "availability_zones" {
-  description = "Number of availability zones"
-  default = 1
+  description = "Availability Zones"
+  default = ["us-east-1a", "us-east-1b"]
 }
 
  variable "public_subnets" {
   description = "Number of public subnets"
-  default = 2
+  default = ["10.10.100.0/24", "10.10.101.0/24"]
 }
