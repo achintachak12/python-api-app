@@ -34,27 +34,27 @@ resource "aws_ecs_task_definition" "api_ecs_task_definition" {
   ])
 }
 
-resource "aws_vpc" "api-vpc" {
-  cidr_block = "10.0.0.0/16"
-}
+# resource "aws_vpc" "api-vpc" {
+#   cidr_block = "10.0.0.0/16"
+# }
 
-resource "aws_lb_target_group" "api-lb-target-group" {
-  name        = "${var.app}-lb-target-group"
-  port        = 8080
-  protocol    = "HTTP"
-  vpc_id      = "${aws_vpc.api-vpc.id}"
-}
+# resource "aws_lb_target_group" "api-lb-target-group" {
+#   name        = "${var.app}-lb-target-group"
+#   port        = 8080
+#   protocol    = "HTTP"
+#   vpc_id      = "${aws_vpc.api-vpc.id}"
+# }
 
-resource "aws_ecs_service" "api_ecs_service" {
-  name            = "${var.app}-ECSService"
-  cluster         = "${aws_ecs_cluster.api_ecs_cluster.id}"
-  task_definition = "${aws_ecs_task_definition.api_ecs_task_definition.arn}"
-  desired_count   = 2
+# resource "aws_ecs_service" "api_ecs_service" {
+#   name            = "${var.app}-ECSService"
+#   cluster         = "${aws_ecs_cluster.api_ecs_cluster.id}"
+#   task_definition = "${aws_ecs_task_definition.api_ecs_task_definition.arn}"
+#   desired_count   = 2
 
-  load_balancer {
-    target_group_arn = "${aws_lb_target_group.api-lb-target-group.arn}"
-    container_name   = "${var.app}"
-    container_port   = 8080
-  }
+#   load_balancer {
+#     target_group_arn = "${aws_lb_target_group.api-lb-target-group.arn}"
+#     container_name   = "${var.app}"
+#     container_port   = 8080
+#   }
 
-}
+# }
