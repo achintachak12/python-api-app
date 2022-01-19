@@ -46,7 +46,7 @@ resource "aws_ecs_service" "api-ecs-service" {
   force_new_deployment = true
 
   network_configuration {
-    subnets          = aws_subnet.api-private.*.id
+    subnets          = aws_subnet.api_private.*.id
     assign_public_ip = false
     security_groups = [
       aws_security_group.api-security-group.id,
