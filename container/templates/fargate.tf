@@ -18,19 +18,21 @@ resource "aws_ecs_task_definition" "api_ecs_task_definition" {
   cpu                      = "512"
   memory                   = "1024"
   container_definitions = <<DEFINITION
-    [
+  [
     {
-      name      = "${var.app}"
-      image     = "${var.image}"
-      cpu       = 10
-      memory    = 512
-      essential = true
-      portMappings = [
+      "name": "python-flask-api",
+      "image": "${var.image}",
+      "entryPoint": [],
+      "essential": true,
+      "portMappings": [
         {
-          containerPort = 8080
-          hostPort      = 8080
+          "containerPort": 8080,
+          "hostPort": 8080
         }
-      ]
+      ],
+      "cpu": 256,
+      "memory": 512,
+      "networkMode": "awsvpc"
     }
   ]
   DEFINITION
