@@ -7,7 +7,7 @@
 
  variable "image" {
   description = "image name to spin up the container"
-  default = "python-flask-api:latest"
+  default = "achidoc/python-flask-api:latest"
 }
 
  variable "private_subnets" {

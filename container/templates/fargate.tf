@@ -75,7 +75,7 @@ resource "aws_alb" "api-alb" {
 
 resource "aws_lb_target_group" "api-target-group" {
   name        = "${var.app}-tg"
-  port        = 80
+  port        = 8080
   protocol    = "HTTP"
   target_type = "ip"
   vpc_id      = aws_vpc.api_vpc.id
@@ -86,7 +86,7 @@ resource "aws_lb_target_group" "api-target-group" {
     protocol            = "HTTP"
     matcher             = "200"
     timeout             = "3"
-    path                = "/"
+    path                = "/version"
     unhealthy_threshold = "2"
   }
 }
