@@ -38,7 +38,7 @@ resource "aws_ecs_task_definition" "api_ecs_task_definition" {
 
 resource "aws_ecs_service" "api-ecs-service" {
   name                 = "${var.app}-ecs-service"
-  cluster              = aws_ecs_cluster.api-ecs-cluster.id
+  cluster              = aws_ecs_cluster.api_ecs_cluster.id
   task_definition      = aws_ecs_task_definition.api_ecs_task_definition.arn
   launch_type          = "FARGATE"
   scheduling_strategy  = "REPLICA"
@@ -49,7 +49,7 @@ resource "aws_ecs_service" "api-ecs-service" {
     subnets          = aws_subnet.api-private.*.id
     assign_public_ip = false
     security_groups = [
-      aws_security_group.service_security_group.id,
+      aws_security_group.api-security-group.id,
       aws_security_group.load_balancer_security_group.id
     ]
   }
@@ -60,14 +60,14 @@ resource "aws_ecs_service" "api-ecs-service" {
     container_port   = 8080
   }
 
-  depends_on = [aws_lb_listener.listener]
+  depends_on = [aws_lb_listener.api-listener]
 }
 
 resource "aws_alb" "api-alb" {
   name               = "${var.app_name}-alb"
   internal           = false
   load_balancer_type = "application"
-  subnets            = aws_subnet.api-public.*.id
+  subnets            = aws_subnet.api_public.*.id
   security_groups    = [aws_security_group.load_balancer_security_group.id]
 }
 

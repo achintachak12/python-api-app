@@ -3,7 +3,7 @@
 ##################################################
 
 resource "aws_security_group" "api-security-group" {
-  vpc_id = aws_vpc.api-vpc.id
+  vpc_id = aws_vpc.api_vpc.id
 
   ingress {
     from_port       = 0
