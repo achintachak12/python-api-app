@@ -78,7 +78,7 @@ resource "aws_lb_target_group" "api-target-group" {
   port        = 8080
   protocol    = "HTTP"
   target_type = "ip"
-  vpc_id      = aws_vpc.api_vpc.id
+  vpc_id      = aws_vpc.api_ecs_vpc.id
 
   health_check {
     healthy_threshold   = "3"

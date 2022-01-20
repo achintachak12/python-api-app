@@ -23,7 +23,7 @@ resource "aws_security_group" "api-security-group" {
 }
 
 resource "aws_security_group" "load_balancer_security_group" {
-  vpc_id = aws_vpc.api_vpc.id
+  vpc_id = aws_vpc.api_ecs_vpc.id
 
   ingress {
     from_port        = 80
