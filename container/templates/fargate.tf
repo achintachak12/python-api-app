@@ -48,7 +48,7 @@ resource "aws_ecs_service" "api-ecs-service" {
   force_new_deployment = true
 
   network_configuration {
-    subnets          = aws_subnet.api_private.*.id
+    subnets          = aws_subnet.api_ecs_private_subnet1.id
     assign_public_ip = false
     security_groups = [
       aws_security_group.api-security-group.id,
@@ -69,7 +69,7 @@ resource "aws_alb" "api-alb" {
   name               = "${var.app}-alb"
   internal           = false
   load_balancer_type = "application"
-  subnets            = aws_subnet.api_public.*.id
+  subnets            = aws_subnet.api_ecs_public_subnet1.id
   security_groups    = [aws_security_group.load_balancer_security_group.id]
 }
 
