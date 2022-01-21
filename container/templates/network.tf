@@ -12,7 +12,7 @@ resource "aws_subnet" "api_ecs_public_subnet1" {
 }
 
 resource "aws_subnet" "api_ecs_public_subnet_lb" {
-  vpc_id                  = aws_vpc.api_vpc.id
+  vpc_id                  = aws_vpc.api_ecs_vpc.id
   cidr_block              = element(var.public_subnets, count.index)
   availability_zone       = element(var.availability_zones, count.index)
   count                   = length(var.public_subnets)
@@ -20,7 +20,7 @@ resource "aws_subnet" "api_ecs_public_subnet_lb" {
 }
 
 resource "aws_route_table" "api_ecs_public_lb" {
-  vpc_id = aws_vpc.api_vpc.id
+  vpc_id = aws_vpc.api_ecs_vpc.id
 }
 
 resource "aws_route" "api_public_route_lb" {
