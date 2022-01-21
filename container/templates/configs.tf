@@ -9,3 +9,13 @@
   description = "image name to spin up the container"
   default = "achidoc/python-flask-api"
 }
+
+ variable "availability_zones" {
+  description = "Availability Zones"
+  default = ["us-east-1a", "us-east-1b"]
+}
+
+ variable "public_subnets" {
+  description = "Number of public subnets"
+  default = ["10.10.100.0/24", "10.10.101.0/24"]
+}

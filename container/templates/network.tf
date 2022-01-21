@@ -11,6 +11,30 @@ resource "aws_subnet" "api_ecs_public_subnet1" {
   cidr_block = "10.0.0.0/24"
 }
 
+resource "aws_subnet" "api_ecs_public_subnet_lb" {
+  vpc_id                  = aws_vpc.api_vpc.id
+  cidr_block              = element(var.public_subnets, count.index)
+  availability_zone       = element(var.availability_zones, count.index)
+  count                   = length(var.public_subnets)
+  map_public_ip_on_launch = true
+}
+
+resource "aws_route_table" "api_ecs_public_lb" {
+  vpc_id = aws_vpc.api_vpc.id
+}
+
+resource "aws_route" "api_public_route_lb" {
+  route_table_id         = aws_route_table.api_ecs_public_lb.id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.api_ecs_igw.id
+}
+
+resource "aws_route_table_association" "api_public_route_association" {
+  count          = length(var.public_subnets)
+  subnet_id      = element(aws_subnet.api_ecs_public_subnet_lb.*.id, count.index)
+  route_table_id = aws_route_table.api_public_route_lb.id
+}
+
 resource "aws_subnet" "api_ecs_private_subnet1" {
   vpc_id     = "${aws_vpc.api_ecs_vpc.id}"
   cidr_block = "10.0.1.0/24"
