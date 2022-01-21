@@ -32,7 +32,7 @@ resource "aws_route" "api_public_route_lb" {
 resource "aws_route_table_association" "api_public_route_association" {
   count          = length(var.public_subnets)
   subnet_id      = element(aws_subnet.api_ecs_public_subnet_lb.*.id, count.index)
-  route_table_id = aws_route_table.api_public_route_lb.id
+  route_table_id = aws_route_table.api_ecs_public_lb.id
 }
 
 resource "aws_subnet" "api_ecs_private_subnet1" {
