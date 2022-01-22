@@ -69,7 +69,7 @@ resource "aws_alb" "api-alb" {
   name               = "${var.app}-alb"
   internal           = false
   load_balancer_type = "application"
-  subnets            = aws_subnet.api_ecs_public_subnet1.*.id
+  subnets            = aws_subnet.api_ecs_public_subnet_lb.*.id
   security_groups    = [aws_security_group.load_balancer_security_group.id]
 }
 
