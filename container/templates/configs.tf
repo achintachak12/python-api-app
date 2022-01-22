@@ -1,4 +1,3 @@
-
 # Variables utilized
  variable "app" {
   description = "Application name which will be running on AWS Fargate"
@@ -17,5 +16,5 @@
 
  variable "public_subnets" {
   description = "Number of public subnets"
-  default = ["10.10.100.0/24", "10.10.101.0/24"]
+  default = ["10.0.10.0/24", "10.0.11.0/24"]
 }
