@@ -14,6 +14,11 @@
   default = ["us-east-1a", "us-east-1b"]
 }
 
+variable "availability_primary_zone" {
+  description = "Availability Primary Zone"
+  default = "us-east-1a"
+}
+
  variable "public_subnets" {
   description = "Number of public subnets"
   default = ["10.0.10.0/24", "10.0.11.0/24"]

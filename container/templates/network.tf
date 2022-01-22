@@ -8,6 +8,7 @@ resource "aws_vpc" "api_ecs_vpc" {
 
 resource "aws_subnet" "api_ecs_public_subnet1" {
   vpc_id     = "${aws_vpc.api_ecs_vpc.id}"
+  availability_zone = var.availability_primary_zone
   cidr_block = "10.0.0.0/24"
 }
 
@@ -37,6 +38,7 @@ resource "aws_route_table_association" "api_public_route_association" {
 
 resource "aws_subnet" "api_ecs_private_subnet1" {
   vpc_id     = "${aws_vpc.api_ecs_vpc.id}"
+  availability_zone = var.availability_primary_zone
   cidr_block = "10.0.1.0/24"
 }
 
