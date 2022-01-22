@@ -2,6 +2,7 @@
 # AWS VPC Network - AWS VPC, IGW/NGW, EIP, 
 # Public/Private Subnets, Route Tables and Table Association
 ##################################################
+
 resource "aws_vpc" "api_ecs_vpc" {
   cidr_block = "10.0.0.0/16"
 }
@@ -94,18 +95,3 @@ resource aws_route "api_vpce_route" {
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "${aws_nat_gateway.api_ecs_ngw.id}"
 }
-
-# resource "aws_security_group" "api_ecs_security_group" {
-#   name                   = "${var.app}-ECSSecurityGroup"
-#   description            = "ECS Allowed Ports"
-#   vpc_id                 = "${aws_vpc.api_ecs_vpc.id}"
-# }
-
-# resource "aws_security_group_rule" "api_ecs_security_group_rule" {
-#   type              = "egress"
-#   protocol          = "-1"
-#   from_port         = 0
-#   to_port           = 0
-#   cidr_blocks       = ["0.0.0.0/0"]
-#   security_group_id = "${aws_security_group.api_ecs_security_group.id}"
-# }
