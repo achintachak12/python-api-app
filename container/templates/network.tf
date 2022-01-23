@@ -4,13 +4,13 @@
 ##################################################
 
 resource "aws_vpc" "api_ecs_vpc" {
-  cidr_block = "10.0.0.0/16"
+  cidr_block = var.vpc_allocation
 }
 
 resource "aws_subnet" "api_ecs_public_subnet1" {
   vpc_id     = "${aws_vpc.api_ecs_vpc.id}"
   availability_zone = var.availability_primary_zone
-  cidr_block = "10.0.0.0/24"
+  cidr_block = var.public_subnet1
 }
 
 resource "aws_subnet" "api_ecs_public_subnet_lb" {
@@ -40,7 +40,7 @@ resource "aws_route_table_association" "api_public_route_association" {
 resource "aws_subnet" "api_ecs_private_subnet1" {
   vpc_id     = "${aws_vpc.api_ecs_vpc.id}"
   availability_zone = var.availability_primary_zone
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.private_subnet1
 }
 
 resource "aws_internet_gateway" "api_ecs_igw" {
