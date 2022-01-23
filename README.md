@@ -18,9 +18,9 @@ The application is dockerized and moved to docker hub(achidoc/python-flask-api).
 ### Platform
 > Any machine with Linux installed will be preferable.
 
-### packages
-> docker (required for image generation)
-> terraform (required for infrastructure deployment)
+### Packages
+- > docker (required for image generation)
+- > terraform (required for infrastructure deployment)
 
 ### Credentials
 > AWS: We have used AWS connection parameters as environment variables. Please declare as below:
@@ -33,21 +33,21 @@ export AWS_DEFAULT_REGION={your_default_region_here}
 
 ## Install instruction
 ### Generation of image(optional):
-You may generate the image and upload the image to your own docker repository. RUn following command from root folder:
+You may generate the image and upload the image to your own docker repository. Run following command from root folder:
 ```
 cd app
 bash ./createimage.sh
 ```
 ### Infrastructure deployment:
-> Please verify the variables mentioned under /templates/configs.tf and make changes if required.
-> Ensure the pre-requisites are met.
-> Run following command from root folder to deploy the infrastructure
+- > Please verify the variables mentioned under /templates/configs.tf and make changes if required.
+- > Ensure the pre-requisites are met.
+- > Run following command from root folder to deploy the infrastructure
 ```
 cd container
 bash ./deployinfra.sh
 ```
 ## Test instruction
-Once the installation is complete:
+Once the installation is completed:
 - Collect the application load balancer DNS name(A record) and browse the url.
 
 - Also call */version* api using the same url and verify the response.
